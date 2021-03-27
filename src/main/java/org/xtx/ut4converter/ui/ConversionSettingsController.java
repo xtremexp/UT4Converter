@@ -63,7 +63,7 @@ public class ConversionSettingsController implements Initializable {
 	private Label inputMapLbl;
 	@FXML
 	private Label outputFolderLbl;
-	
+
 	/**
 	 * Path where ressources will be referenced to
 	 * (e.g: '/Game/RestrictedAssets/Maps/WIP/DM-Deck16'
@@ -116,12 +116,12 @@ public class ConversionSettingsController implements Initializable {
 	 * Default scale when converting Unreal 2 map to UT4
 	 */
 	public static final String DEFAULT_SCALE_UNREAL2_UE4 = "2.5";
-	
+
 	/**
 	 * Default scale factor of converted maps from UE2 (UT2003, UT2004) ut games to UT4
 	 */
 	public static final String DEFAULT_SCALE_FACTOR_UE2_UE4 = "2.2";
-	
+
 	/**
 	 * Default scale factor of converted maps from UT3 (Unreal Engine 3) to UT4
 	 */
@@ -155,7 +155,7 @@ public class ConversionSettingsController implements Initializable {
 
 	/**
 	 * Initializes the controller class.
-	 * 
+	 *
 	 * @param url
 	 * @param rb
 	 */
@@ -221,7 +221,7 @@ public class ConversionSettingsController implements Initializable {
 			selectInputT3dMap.setDisable(true);
 			t3dLabel.setDisable(true);
 		}
-		
+
 		switch(mapConverter.getInputGame().engine.version){
 			case 1:
 				scaleFactorList.getSelectionModel().select(DEFAULT_SCALE_FACTOR_UE1_UE4);
@@ -278,7 +278,7 @@ public class ConversionSettingsController implements Initializable {
 
 	/**
 	 * Allow changing the default ut4 map name suggested by ut4 converter
-	 * 
+	 *
 	 * @param event
 	 */
 	@FXML
@@ -401,7 +401,7 @@ public class ConversionSettingsController implements Initializable {
 
 	/**
 	 * All settings good
-	 * 
+	 *
 	 * @return
 	 */
 	private boolean checkConversionSettings() {
@@ -418,7 +418,7 @@ public class ConversionSettingsController implements Initializable {
 
 		// FOR UT3 need to have .t3d file created from UT3 editor
 		// because the ut3.com batchexport command is buggy and messes up actors !
-		if (mapConverter.getInputGame() == UTGame.UT3 && mapConverter.getIntT3dUt3Editor() == null) {
+		if (mapConverter.getInputGame() == UTGame.UT3 && mapConverter.getInT3d() == null) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Input .t3d map not set");
 			alert.setHeaderText("Input map not set");
@@ -430,9 +430,9 @@ public class ConversionSettingsController implements Initializable {
 
 		return true;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param event
 	 */
 	@FXML
@@ -459,7 +459,7 @@ public class ConversionSettingsController implements Initializable {
 							chooser.setInitialDirectory(ut4BaseRefPath.getParentFile());
 						}
 					}
-					
+
 					if (chooser.getInitialDirectory() == null) {
 						chooser.setInitialDirectory(ut4RootContentPath);
 					}
@@ -470,13 +470,13 @@ public class ConversionSettingsController implements Initializable {
 						if(ut4RefFolder.getPath().startsWith(ut4RootContentPath.getAbsolutePath())){
 							String ut4BaseRef = "/Game" + ut4RefFolder.getAbsolutePath().substring(ut4RootContentPath.getAbsolutePath().length());
 							ut4BaseRef = ut4BaseRef.replace("\\", "/");
-							
+
 							ut4BaseReferencePath.setText(ut4BaseRef);
 							mapConverter.setUt4ReferenceBaseFolder(ut4BaseRef);
 						} else {
 							showErrorMessage("Reference folder must be in ut4 content subfolder!");
 						}
-						
+
 					}
 				} else {
 					Logger.getGlobal().severe("UT4 Editor path not set !");
@@ -488,7 +488,7 @@ public class ConversionSettingsController implements Initializable {
 		}
 
 	}
-	
+
 	private void showErrorMessage(String message) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
 		alert.setTitle("Error");
@@ -524,7 +524,7 @@ public class ConversionSettingsController implements Initializable {
 
 	/**
 	 * Changes the log level
-	 * 
+	 *
 	 * @param event
 	 */
 	@FXML
@@ -554,7 +554,7 @@ public class ConversionSettingsController implements Initializable {
 
 		// UT3 commandlet export too buggy and messed .t3d file so need to use the exported one from UT3 editor
 		if (t3dUt3EditorFile != null) {
-			mapConverter.setIntT3dUt3Editor(t3dUt3EditorFile);
+			mapConverter.setInT3d(t3dUt3EditorFile);
 		}
 	}
 }
