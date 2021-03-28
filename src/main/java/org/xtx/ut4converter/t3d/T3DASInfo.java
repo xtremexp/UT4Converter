@@ -60,7 +60,11 @@ public class T3DASInfo extends T3DActor {
 					idx++;
 				}
 
-				obj.setObjectiveDesc(((List<Object>) propObj.getPropertyValue()).get((idx-1)).toString());
+				List<Object> objDescValues = (List<Object>) propObj.getPropertyValue();
+				// there might be not a description for each single objective / fortstandard
+				if (objDescValues.size() >= idx) {
+					obj.setObjectiveDesc(objDescValues.get((idx - 1)).toString());
+				}
 				oldDefensePriority = obj.getDefensePriority();
 			}
 		}
