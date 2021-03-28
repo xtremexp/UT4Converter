@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 /**
  * Converts T3D Unreal 1 / Unreal Tournament to Unreal Tournament "4" t3d file
- * 
+ *
  * @author XtremeXp
  */
 @SuppressWarnings("restriction")
@@ -59,11 +59,6 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	private LinkedList<T3DActor> convertedActors = new LinkedList<>();
 
-	/**
-	 * Assault objectives. Declared here so we can set out the good "order"
-	 * prop. TODO move out to proper class
-	 */
-	private SortedMap<Integer, T3DASObjective> objectives = new TreeMap<>();
 
 	private boolean createNoteWhenUnconverted = true;
 
@@ -76,7 +71,7 @@ public class T3DLevelConvertor extends Task<Object> {
 	private int actorCount;
 
 	private boolean noUi;
-	
+
 	/**
 	 * Unconverted properties
 	 */
@@ -89,22 +84,9 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	private T3DActor uta = null;
 
-	/**
-	 * Set objective order from DefaultPriority UT99 prop from FortStandard
-	 * actors
-	 */
-	private void setAssaultObjectiveOrder() {
-
-		int order = objectives.size() - 1;
-
-		for (T3DASObjective obj : objectives.values()) {
-			obj.setOrder(order);
-			order--;
-		}
-	}
 
 	/**
-	 * 
+	 *
 	 * @param originalT3d
 	 *            Original t3d ut3 file
 	 * @param convertedT3d
@@ -124,7 +106,7 @@ public class T3DLevelConvertor extends Task<Object> {
 	}
 
 	/**
-     * 
+     *
      */
 	private void initialise() {
 
@@ -174,7 +156,7 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	/**
 	 * Converts t3d file for final game
-	 * 
+	 *
 	 * @throws Exception Exception thrown
 	 */
 	public void readConvertAndWrite() throws Exception {
@@ -242,7 +224,7 @@ public class T3DLevelConvertor extends Task<Object> {
 	}
 
 
-	
+
 	/**
 	 * Find an actor by name
 	 * @param actorName Actor name
@@ -260,18 +242,13 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	/**
 	 * Write actors to .t3d file
-	 * 
+	 *
 	 * @throws IOException Exception thrown
 	 */
 	private void writeActors() throws IOException {
 		try {
 
 			bwr = new BufferedWriter(new FileWriter(outT3dFile));
-
-			// Write T3D converted file
-			// fast 'code' for setting assault good order for objectives
-			// TODO move out in near future ...
-			setAssaultObjectiveOrder();
 
 			writeHeader();
 
@@ -326,7 +303,7 @@ public class T3DLevelConvertor extends Task<Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void convertActors() {
 
@@ -376,7 +353,7 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	/**
 	 * Read actor data from original t3d level file
-	 * 
+	 *
 	 * @throws IOException Exception thrown
 	 */
 	private void readActors() throws IOException {
@@ -415,7 +392,7 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	/**
 	 * Says if current line is data for new actor
-	 * 
+	 *
 	 * @param line t3d data line
 	 * @return <code>true</code> if lines describe a new actor
 	 */
@@ -432,7 +409,7 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	/**
 	 * Analyze T3D line to get and convert UT data
-	 * 
+	 *
 	 * @param line
 	 *            current T3D line being read
 	 * @throws Exception Exception thrown
@@ -508,7 +485,7 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	/**
 	 * Returns current actor class from t3d line defining actor
-	 * 
+	 *
 	 * @param line
 	 *            t3d line
 	 * @return Actor class
@@ -524,7 +501,7 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	/**
 	 * Write header of T3D file TODO check for UE1/UE2
-	 * 
+	 *
 	 * @throws IOException Exception thrown
 	 */
 	private void writeHeader() throws IOException {
@@ -556,7 +533,7 @@ public class T3DLevelConvertor extends Task<Object> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return Level dimensions
 	 */
 	private Vector3d getLevelDimensions() {
@@ -611,7 +588,7 @@ public class T3DLevelConvertor extends Task<Object> {
 	 * Write footer of converted t3d file // Begin Map
 	 * Name=/Game/RestrictedAssets/Maps/WIP/DM-SolarTest // Begin Level
 	 * NAME=PersistentLevel TODO check for UE1/UE2
-	 * 
+	 *
 	 * @throws IOException Exception thrown
 	 */
 	private void writeFooter() throws IOException {
@@ -665,9 +642,9 @@ public class T3DLevelConvertor extends Task<Object> {
 	public void setCreateNoteWhenUnconverted(boolean createNoteWhenUnconverted) {
 		this.createNoteWhenUnconverted = createNoteWhenUnconverted;
 	}
-	
-	
-	
+
+
+
 	public Map<String, Set<String>> getUnconvertedProperties() {
 		return unconvertedProperties;
 	}
@@ -699,8 +676,8 @@ public class T3DLevelConvertor extends Task<Object> {
 		}
 	}
 
-	
-	
+
+
 	public SortedSet<String> getUnconvertedActors() {
 		return unconvertedActors;
 	}
@@ -718,9 +695,5 @@ public class T3DLevelConvertor extends Task<Object> {
 
 	public void setNoUi(boolean noUi) {
 		this.noUi = noUi;
-	}
-
-	public SortedMap<Integer, T3DASObjective> getObjectives() {
-		return objectives;
 	}
 }

@@ -20,7 +20,8 @@ public class T3DASInfoTest {
     }
 
     /**
-     * Test conversion of touch objective
+     * Test conversion of assault info actor.
+     * Objective description must be copied to UTASObjective actors
      *
      * @throws IOException
      * @throws ReflectiveOperationException
@@ -30,13 +31,13 @@ public class T3DASInfoTest {
 
         // add 4 objectives to map (lower defense priority = latest objectives)
         // same count as ObjDesc in AssaultInfo actor
-        final T3DASObjective obj1 = buildAndConvertObjectiveActor(100);
+        final T3DASObjective obj1 = T3DASObjectiveTest.buildAndConvertObjectiveActor(this.mc,100);
         // same defense priority should have same objective description
-        final T3DASObjective obj2a = buildAndConvertObjectiveActor(50);
-        final T3DASObjective obj2b = buildAndConvertObjectiveActor(50);
+        final T3DASObjective obj2a = T3DASObjectiveTest.buildAndConvertObjectiveActor(this.mc,50);
+        final T3DASObjective obj2b = T3DASObjectiveTest.buildAndConvertObjectiveActor(this.mc,50);
 
-        final T3DASObjective obj3 = buildAndConvertObjectiveActor(20);
-        final T3DASObjective obj4 = buildAndConvertObjectiveActor(0);
+        final T3DASObjective obj3 = T3DASObjectiveTest.buildAndConvertObjectiveActor(this.mc,20);
+        final T3DASObjective obj4 = T3DASObjectiveTest.buildAndConvertObjectiveActor(this.mc,0);
 
         // add in map not in same order to test sorting
         this.mc.getT3dLvlConvertor().getConvertedActors().add(obj2a);
@@ -66,13 +67,5 @@ public class T3DASInfoTest {
         }
     }
 
-    private T3DASObjective buildAndConvertObjectiveActor(int defensePriority) throws IOException, ReflectiveOperationException {
-        // simulate existing objective actor converted within map
-        final T3DActor objectiveActor = BaseTest.parseFromT3d(this.mc, "FortStandard", T3DASObjective.class, T3DASInfoTest.class.getResource("/t3d/ue1/UT99-FortStandard-Touch.t3d").getPath());
-        T3DASObjective objCast = (T3DASObjective) objectiveActor;
-        objCast.setDefensePriority(defensePriority);
-        objCast.convert();
 
-        return objCast;
-    }
 }

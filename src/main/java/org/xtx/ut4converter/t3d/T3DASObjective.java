@@ -5,7 +5,9 @@ import org.xtx.ut4converter.ucore.ue4.BodyInstance;
 import org.xtx.ut4converter.ucore.ue4.BodyInstance.ECollisionResponse;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Based on properties of UT4 Assault mod v1.6.1 Only UT99 support for the
@@ -250,10 +252,31 @@ public class T3DASObjective extends T3DSound {
 			collisionHeight = 64d;
 		}
 
-		// TODO move out ('quick code')
-		mapConverter.getT3dLvlConvertor().getObjectives().put(this.defensePriority, this);
+		// find all objective actors sorted by defense priority descending
+		final List<T3DActor> objSortedByDefensePriority = this.getMapConverter().getT3dLvlConvertor().getConvertedActors().stream().filter(t -> t instanceof T3DASObjective).sorted(Comparator.comparingInt(t -> ((T3DASObjective) t).getDefensePriority()).reversed()).collect(Collectors.toList());
+		int idx = 0;
+		int oldDefensePriority = -1;
+
+		// recompute order for all objectives
+		for (final T3DActor otherObjective : objSortedByDefensePriority) {
+
+			if (otherObjective instanceof T3DASObjective) {
+				T3DASObjective t3DASObjective = (T3DASObjective) otherObjective;
+
+				if (oldDefensePriority != t3DASObjective.getDefensePriority()) {
+					idx++;
+				}
+
+				t3DASObjective.setOrder((idx - 1));
+				oldDefensePriority = t3DASObjective.getDefensePriority();
+			}
+		}
 
 		super.convert();
+	}
+
+	public int getOrder() {
+		return order;
 	}
 
 	public void setOrder(int order) {
