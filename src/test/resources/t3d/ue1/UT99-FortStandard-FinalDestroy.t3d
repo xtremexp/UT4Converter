@@ -1,0 +1,24 @@
+Begin Map
+Begin Actor Class=FortStandard Name=FortStandard5
+     bSelfDisplayed=False
+     NearestPathNodeTag="Crystaltag"
+     EndCamTag="EndCam1"
+     FortName="Crystal"
+     DamageEvent(0)="crystalFlare"
+     DamageEvent(1)="Smoke2"
+     DamageEvent(2)="SmokeHose1"
+     DamageEvent(3)="SmokeHose2"
+     DamageEventThreshold(0)=50.000000
+     DamageEventThreshold(1)=100.000000
+     DamageEventThreshold(2)=250.000000
+     DamageEventThreshold(3)=350.000000
+     Health=500
+     Tag="FortStCrystal"
+     Event="Crystal"
+     Location=(X=5632.060547,Y=-0.709221,Z=577.854797)
+     bSelected=True
+     CollisionRadius=175.000000
+     CollisionHeight=205.000000
+     Name="FortStandard5"
+End Actor
+End Map

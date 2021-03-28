@@ -180,6 +180,10 @@ public class T3DSimpleProperty {
         }
     }
 
+    public String getPropertyName() {
+        return propertyName;
+    }
+
     public Object getPropertyValue() {
         return propertyValue;
     }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Based on properties of UT4 Assault mod v1.6.1 Only UT99 support for the
  * moment
- * 
+ *
  * @author XtremeXp
  *
  */
@@ -210,10 +210,11 @@ public class T3DASObjective extends T3DSound {
 			} else {
 				sbf.append(IDT).append("\tObjectiveHealth=").append(DEFAULT_PAWN_HEALTH).append("\n");
 			}
+
+			// if not byDamage then objective type is destroy
+			sbf.append(IDT).append("\t\tObjectiveType=NewEnumerator1\n");
 		}
 
-		sbf.append(IDT).append("\tbyTouch=").append(byTouch).append("\n");
-		sbf.append(IDT).append("\tbyDamage=").append(byDamage).append("\n");
 		sbf.append(IDT).append("\tisCritical=").append(isCritical).append("\n");
 		sbf.append(IDT).append("\tOrder=").append(order).append("\n");
 
@@ -257,5 +258,21 @@ public class T3DASObjective extends T3DSound {
 
 	public void setOrder(int order) {
 		this.order = order;
+	}
+
+	public void setDefensePriority(int defensePriority) {
+		this.defensePriority = defensePriority;
+	}
+
+	public int getDefensePriority() {
+		return defensePriority;
+	}
+
+	public String getObjectiveDesc() {
+		return objectiveDesc;
+	}
+
+	public void setObjectiveDesc(String objectiveDesc) {
+		this.objectiveDesc = objectiveDesc;
 	}
 }

@@ -105,6 +105,22 @@ public class BaseTest {
         return uta;
     }
 
+    /**
+     * Export single t3d actor within t3d level so it can be copy/paste easily within editor
+     *
+     * @param t3DActor
+     * @return
+     */
+    public static String toUT4T3D(T3DActor t3DActor) {
+
+        return "Begin Map\n" + "\tBegin Level\n" +
+                t3DActor.toT3d() +
+                "\tEnd Level\n" +
+                "\tBegin Surface\n" +
+                "\tEnd Surface\n" +
+                "End Map";
+    }
+
     public static void setMapFile(final MapConverter mc, final String inMap){
         mc.setInMap(new File(UTGames.getMapsFolder(mc.getUserConfig().getGameConfigByGame(mc.getInputGame()).getPath(), mc.getInputGame())  + "/" + inMap));
     }

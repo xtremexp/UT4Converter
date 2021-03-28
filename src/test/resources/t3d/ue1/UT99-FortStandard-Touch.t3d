@@ -1,0 +1,17 @@
+Begin Map
+Begin Actor Class=FortStandard Name=FortStandard0
+     bSelfDisplayed=False
+     bTriggerOnly=True
+     bFlashing=False
+     bSayDestroyed=False
+     DefensePriority=50
+     FortName="The front doors"
+     DestroyedMessage="are opened!"
+     Tag="Frontdoorfort"
+     Event="frontdoorsSwitch"
+     Location=(X=1696.603638,Y=-22.428162,Z=71.100121)
+     bSelected=True
+     CollisionRadius=40.000000
+     Name="FortStandard0"
+End Actor
+End Map

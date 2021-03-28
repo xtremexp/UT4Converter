@@ -1,0 +1,16 @@
+ Begin Map
+ Begin Actor Class=AssaultInfo Name=AssaultInfo0
+      ObjShots(0)=Texture'MyLevel.As-mazonOb1'
+      ObjShots(1)=Texture'MyLevel.As-mazonOb2'
+      ObjShots(2)=Texture'MyLevel.As-mazonOb3'
+      ObjShots(3)=Texture'MyLevel.As-mazonOb4'
+      ObjDesc(0)="Obj 1 - Infiltrate the base by first destroying the two counterweights."
+      ObjDesc(1)="Obj 2a/2b - Optionally, switch and open the castle's main gate."
+      ObjDesc(2)="Obj 3 - Find and activate the primary access control switch."
+      ObjDesc(3)="Obj 4 - Destroy the Tarydium power crystal."
+      NumObjShots=4
+      Tag="AssaultInfo"
+      Location=(X=397.449921,Y=-11.949768,Z=60.594143)
+      Name="AssaultInfo0"
+ End Actor
+ End Map
